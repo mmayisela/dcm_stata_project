@@ -1,0 +1,33 @@
+
+import pandas as pd
+import numpy as np
+
+# Set seed for reproducibility
+np.random.seed(42)
+num_samples = 100
+
+# Generate random genotype data
+genotypes = np.random.choice(["TT", "TC", "CC"], size=num_samples, p=[0.4, 0.4, 0.2])
+
+# Generate simulated gender data
+genders = np.random.choice(["Male", "Female"], size=num_samples)
+
+# Generate simulated LVEF values
+lvef_values = np.clip(np.random.normal(loc=45, scale=10, size=num_samples), 20, 70).round(1)
+
+# Generate simulated Age values
+age_values = np.clip(np.random.normal(loc=50, scale=15, size=num_samples), 18, 80).astype(int)
+
+# Create DataFrame
+simulated_df = pd.DataFrame({
+    "ID": [f"PT_{i+1}" for i in range(num_samples)],
+    "SNP_TTN": genotypes,
+    "Gender": genders,
+    "LVEF": lvef_values,
+    "Age": age_values
+})
+
+# Save to CSV
+simulated_df.to_csv("simulated_ttn_dcm_data.csv", index=False)
+
+
