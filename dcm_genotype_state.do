@@ -4,15 +4,24 @@ clear all
 set more off
 
 /* Step 1: Load Data */
-import delimited "genotype_data_rs10497520.csv", clear
+import delimited "/Users/minenhle/Desktop/OneDrive_Wits/mini_projects/dcm_genotypte_stata/dcm_data.csv", clear
 
-/* Assume data has columns: 'ID', 'rs10497520' (e.g., TT, TC, CC) */
-generate homozygous_ref = (rs10497520 == "TT")
-generate heterozygous = (rs10497520 == "TC")
-generate homozygous_alt = (rs10497520 == "CC")
+/* Describe data */
+describe
 
-/* Step 2: Compute Genotype Frequencies */
-tabulate rs10497520, matcell(freq_matrix)
+/* View data */
+browse
+
+
+/* Question 1 */
+
+/* Assume data has columns: 'ID', 'SNP'  */
+generate homozygous_ref = (snp_ttn == "TT")
+generate heterozygous = (snp_ttn == "TC")
+generate homozygous_alt = (snp_ttn == "CC")
+
+/* Compute Genotype Frequencies */
+tabulate snp_ttn, matcell(freq_matrix)
 
 gen total = _N
 
@@ -25,7 +34,11 @@ display "TT: " freq_homozygous_ref
 display "TC: " freq_heterozygous
 display "CC: " freq_homozygous_alt
 
-/* Step 3: Hardy-Weinberg Equilibrium Test */
+
+
+/* Question 2 */
+
+/* Hardy-Weinberg Equilibrium Test */
 gen p = (2*freq_homozygous_ref + freq_heterozygous) / (2*total)
 gen q = 1 - p
 gen expected_homo_ref = (p^2) * total
