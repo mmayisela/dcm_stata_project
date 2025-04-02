@@ -27,6 +27,8 @@ This project calculates genotype frequencies for the **rs10497520** SNP in the *
 
 ## Answer
 
+```markdown
+
  SNP_TTN |      Freq.     Percent        Cum.
 ------------+-----------------------------------
          CC |         18       18.00       18.00
@@ -35,6 +37,7 @@ This project calculates genotype frequencies for the **rs10497520** SNP in the *
 ------------+-----------------------------------
       Total |        100      100.00
 
+```
 
 Genotype Frequencies for TTN SNP rs10497520
 
@@ -56,12 +59,16 @@ Hardy-Weinberg Chi-Square Test: 123.18279
 
 ## 3. What is the distribution of age in the entire cohort
 
+```markdown
 Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
          age |        100       49.68    14.39548         18         80
 
+```
 
 ## 4. What is the gender distribution of this cohort
+
+```markdown
 
  Gender |      Freq.     Percent        Cum.
 ------------+-----------------------------------
@@ -70,14 +77,19 @@ Variable |        Obs        Mean    Std. dev.       Min        Max
 ------------+-----------------------------------
       Total |        100      100.00
 
+```
 
 ## 5. What is the average LVEF in this cohort
+
+```markdown
 
  Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
         lvef |        100      46.002    9.366877       28.9         70
 
+```
 
+```markdown
 ## 6. What is the correlation between LVEF and Age
 
       |      age     lvef
@@ -85,3 +97,4 @@ Variable |        Obs        Mean    Std. dev.       Min        Max
          age |   1.0000
         lvef |   0.0227   1.0000
 
+```
