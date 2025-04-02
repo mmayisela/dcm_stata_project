@@ -4,6 +4,7 @@
 This project calculates genotype frequencies for the **rs10497520** SNP in the **TTN gene** using **STATA** and performs a **Hardy-Weinberg Equilibrium (HWE) test**. The results can be used for downstream genetic association studies.
 
 ## Files Included
+- **dcm_stata.py**: script to simulate dcm_data.csv 
 - **stata_genotype_freq.do**: STATA script to compute genotype frequencies and perform HWE testing.
 - **dcm_data.csv**: Simulated dataset with genotype information for the rs10497520 SNP.
 - **dcm_output.csv**: Output file with calculated frequencies and HWE test results.
@@ -89,8 +90,9 @@ Variable |        Obs        Mean    Std. dev.       Min        Max
 
 ```
 
-```markdown
+
 ## 6. What is the correlation between LVEF and Age
+```markdown
 
       |      age     lvef
 -------------+------------------
