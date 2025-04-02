@@ -52,3 +52,41 @@ display "Hardy-Weinberg Chi-Square Test: " chi_sq
 
 /* Step 4: Save Results */
 export delimited using "genotype_frequencies_rs10497520.csv", replace
+
+
+
+/* Question 3 */
+
+/* summarise age, age is an integer, continous variable (*/
+
+summarise age
+
+
+/* Question 4 */
+
+/* gender distribution of cohort, categorical variables */
+
+tabulate gender
+
+
+/* Question 5 */ 
+
+/* LVEF average */
+
+summarize LVEF
+
+
+/* Question 5 */
+
+/* Correlation between age and LVEF */
+
+correlate age lvef
+
+
+
+
+
+
+
+
+

@@ -52,3 +52,36 @@ q = 0.9964
 
 Hardy-Weinberg Chi-Square Test: 123.18279
 
+
+
+## 3. What is the distribution of age in the entire cohort
+
+Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+         age |        100       49.68    14.39548         18         80
+
+
+## 4. What is the gender distribution of this cohort
+
+ Gender |      Freq.     Percent        Cum.
+------------+-----------------------------------
+     Female |         49       49.00       49.00
+       Male |         51       51.00      100.00
+------------+-----------------------------------
+      Total |        100      100.00
+
+
+## 5. What is the average LVEF in this cohort
+
+ Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+        lvef |        100      46.002    9.366877       28.9         70
+
+
+## 6. What is the correlation between LVEF and Age
+
+      |      age     lvef
+-------------+------------------
+         age |   1.0000
+        lvef |   0.0227   1.0000
+
