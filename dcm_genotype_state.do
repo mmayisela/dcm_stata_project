@@ -9,6 +9,14 @@ import delimited "/Users/minenhle/Desktop/OneDrive_Wits/mini_projects/dcm_genoty
 /* Describe data */
 describe
 
+/* Change genotype to factor variable */
+
+encode snp_ttn, generate(snp_gt)
+
+/* Change gender to factor variable */
+
+encode gender, generate(gender_final)
+
 /* View data */
 browse
 
@@ -16,9 +24,9 @@ browse
 /* Question 1 */
 
 /* Assume data has columns: 'ID', 'SNP'  */
-generate homozygous_ref = (snp_ttn == "TT")
-generate heterozygous = (snp_ttn == "TC")
-generate homozygous_alt = (snp_ttn == "CC")
+generate homozygous_ref = (snp_gt == "TT")
+generate heterozygous = (snp_gt == "TC")
+generate homozygous_alt = (snp_gt == "CC")
 
 /* Compute Genotype Frequencies */
 tabulate snp_ttn, matcell(freq_matrix)
@@ -66,7 +74,7 @@ summarise age
 
 /* gender distribution of cohort, categorical variables */
 
-tabulate gender
+tabulate gender_final
 
 
 /* Question 5 */ 
@@ -81,6 +89,36 @@ summarize LVEF
 /* Correlation between age and LVEF */
 
 correlate age lvef
+
+/* Question 6 */ 
+
+/* LVEF significant difference between males and females */
+
+ttest lvef, by(gender_final)
+
+/* Question 7 */
+
+/* Genotype influnce LVEF */
+
+anova lvef snp_gt
+
+/* Question 8 */
+
+/* Does age predict lvef? */
+
+/* You can perform a linear regression to determine whether age significantly predicts LVEF, adjusting for other variables (e.g., gender, genotype).*/
+
+regress lvef age gender_final
+
+
+/* Question 9 */
+
+/* Does the relationship between genotype and LVEF differ by gender*/
+
+/* You can conduct an interaction analysis to see if the effect of genotype on LVEF varies by gender. */
+
+ regress lvef genotype##gender_final
+
 
 
 
