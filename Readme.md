@@ -7,7 +7,7 @@ This project calculates genotype frequencies for the **rs10497520** SNP in the *
 - **dcm_stata.py**: script to simulate dcm_data.csv 
 - **stata_genotype_freq.do**: STATA script to compute genotype frequencies and perform HWE testing.
 - **dcm_data.csv**: Simulated dataset with genotype information for the rs10497520 SNP.
-- **dcm_output.csv**: Output file with calculated frequencies and HWE test results.
+
 
 ## Requirements
 - STATA 14 or later
@@ -60,6 +60,8 @@ q = 0.9964
 
 Hardy-Weinberg Chi-Square Test: 123.18279
 
+For chi2 that is greater than 3.84, we reject hypothesis that observed and expected are equivalent. Population not in HW equilibrium
+
 ```
 
 
@@ -71,6 +73,8 @@ Variable |        Obs        Mean    Std. dev.       Min        Max
          age |        100       49.68    14.39548         18         80
 
 ```
+
+Standard deviation measures the spread or variability of data points around the mean
 
 ## 4. What is the gender distribution of this cohort
 
@@ -85,18 +89,9 @@ Variable |        Obs        Mean    Std. dev.       Min        Max
 
 ```
 
-## 5. What is the average LVEF in this cohort
-
-```markdown
-
- Variable |        Obs        Mean    Std. dev.       Min        Max
--------------+---------------------------------------------------------
-        lvef |        100      46.002    9.366877       28.9         70
-
-```
 
 
-## 6. What is the correlation between LVEF and Age
+## 5. What is the correlation between LVEF and Age
 ```markdown
 
       |      age     lvef
@@ -105,8 +100,9 @@ Variable |        Obs        Mean    Std. dev.       Min        Max
         lvef |   0.0227   1.0000
 
 ```
+0.0227 correlation means there is not much correlation
 
-## 7. Is there a significant difference between LVEF in males and females
+## 6. Is there a significant difference between LVEF in males and females
 
 ```markdown
 
@@ -130,7 +126,9 @@ H0: diff = 0                                     Degrees of freedom =       98
 
 ```
 
-## 8. Does genotype for specific influence LVEF
+All the probabilities are greater than 0.05 therefore we fail to reject the null hypothesis 
+
+## 7. Does genotype for specific influence LVEF
 
 ```markdown
 
@@ -150,8 +148,9 @@ Number of obs =        100    R-squared     =  0.0076
 . 
 
 ```
+p = 0.6918 meaning we fail to reject null hypothesis that genotype does not infuence lvef
 
-## 9. Is age a significant predicyor of LVEF
+## 8. Is age a significant predictor of LVEF
 
 ```markdown
 
@@ -171,8 +170,9 @@ gender_final |  -2.564079   1.879103    -1.36   0.176    -6.293579     1.16542
 ------------------------------------------------------------------------------
 
 ```
+F(2, 97) = 0.96, p = 0.3878 → Since p > 0.05, the model is not statistically significant, indicating that age and gender_final do not explain lvef well.
 
-## 10. Does the relationship between genotype and LVEF differ by gender?
+## 9. Does the relationship between genotype and LVEF differ by gender?
 
 ```markdown
 
@@ -203,7 +203,9 @@ snp_gt#gender_final |
 
 ```
 
-## 11. 
+F(5, 94) = 1.69, p = 0.1448 → Since p > 0.05, the overall model is not statistically significant. This suggests the predictors do not strongly explain variation in lvef.
+
+## 10.  Is there an association between age and genotype frequency (e.g., age distribution across genotypes)?
 
 ```markdown
 

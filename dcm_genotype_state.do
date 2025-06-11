@@ -9,24 +9,11 @@ import delimited "/Users/minenhle/Desktop/OneDrive_Wits/mini_projects/dcm_genoty
 /* Describe data */
 describe
 
-/* Change genotype to factor variable */
-
-encode snp_ttn, generate(snp_gt)
-
-/* Change gender to factor variable */
-
-encode gender, generate(gender_final)
-
 /* View data */
 browse
 
 
 /* Question 1 */
-
-/* Assume data has columns: 'ID', 'SNP'  */
-generate homozygous_ref = (snp_gt == "TT")
-generate heterozygous = (snp_gt == "TC")
-generate homozygous_alt = (snp_gt == "CC")
 
 /* Compute Genotype Frequencies */
 tabulate snp_ttn, matcell(freq_matrix)
@@ -53,10 +40,19 @@ gen expected_homo_ref = (p^2) * total
 gen expected_hetero = (2*p*q) * total
 gen expected_homo_alt = (q^2) * total
 
+
+
+
+
 /* Perform Chi-Square Test */
 gen chi_sq = ((freq_homozygous_ref - expected_homo_ref)^2 / expected_homo_ref) + ((freq_heterozygous - expected_hetero)^2 / expected_hetero) + ((freq_homozygous_alt - expected_homo_alt)^2 / expected_homo_alt)
 
 display "Hardy-Weinberg Chi-Square Test: " chi_sq
+
+/* For a p-value of .05 and 1 degree of freedom (df = 1 is generally used for HW even when there are three phenotypes because the expected can be calculated starting with one of the two alleles*), 
+the critical value is 3.84 */
+
+/* For chi2 that is greater than 3.84, we reject hypothesis that observed and expected are equivalent. Population not in HW equilibrium */
 
 /* Step 4: Save Results */
 export delimited using "genotype_frequencies_rs10497520.csv", replace
@@ -65,7 +61,7 @@ export delimited using "genotype_frequencies_rs10497520.csv", replace
 
 /* Question 3 */
 
-/* summarise age, age is an integer, continous variable (*/
+/* summarise age, age is an integer, continous variable */
 
 summarise age
 
@@ -74,7 +70,7 @@ summarise age
 
 /* gender distribution of cohort, categorical variables */
 
-tabulate gender_final
+tabulate gender
 
 
 /* Question 5 */ 
@@ -118,6 +114,16 @@ regress lvef age gender_final
 /* You can conduct an interaction analysis to see if the effect of genotype on LVEF varies by gender. */
 
  regress lvef genotype##gender_final
+
+
+/* Question 10 */
+
+/* Is there an association between age and genotype frequency (e.g., age distribution across genotypes)? */
+
+/* You can use a chi-square test to see if the age distribution differs significantly across different genotype groups. */
+
+tabulate genotype age, chi2
+
 
 
 
